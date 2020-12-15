@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+<h:outputStylesheet library="css" name="myCss.css"/> 
+<meta charset="UTF-8"></meta>
+<title>JSF 2.3 Messages</title>
+</h:head>
+
+<h:body><h:form>
+
+	<a href="https://myfaces.apache.org/">
+		<h:graphicImage library="img" name="jsf-logo.png" styleClass="csslogo"
+															alt="JSF"/>
+		<!-- Alternativ zu h:graphicImage sollte auch gehen:
+			 <img class="csslogo" src="resources/img/jsf-logo.png" alt="JSF"/> -->	
+	</a>
+	
+	<h:panelGrid columns = "2">
+	<h:graphicImage library="img" name="java.png" alt="Logo"/>
+	<h:outputText value="Messages"
+				styleClass="branding" /></h:panelGrid>
+				
+	<!-- ===================================================================== -->
+	
+	<h:messages globalOnly="false"    showDetail="true"       showSummary="true"
+				infoClass="msgInfo"   warnClass="msgWarning"
+				errorClass="msgError" fatalClass="msgFatal"/>
+				
+	<f:event type="preRenderView"  listener="#{mb.preRenderAction  }"/>
+	<f:event type="postRenderView" listener="#{mb.postRenderAction }"/>
+	
+	<h2>Messages</h2>
+	
+	<p> Eine Faces Message besteht aus zwei Teilen, die als <cite>Summary</cite>
+		und <CITE>Detail</CITE> bezeichnet werden.</p>
+		
+	<p/><h:panelGrid columns = "2">
+		Summary <h:inputText value = "#{mb.summary}"></h:inputText>		
+		Detail  <h:inputText value = "#{mb.detail}" size = "64"></h:inputText>		
+		</h:panelGrid>
+	
+	<h:commandButton value="Info"    actionListener="#{mb.aclInfo}"/> 	 &#160;
+	<h:commandButton value="Error"   actionListener="#{mb.aclError}"/>   &#160;
+	<h:commandButton value="Warning" actionListener="#{mb.aclWarning}"/> &#160;
+	<h:commandButton value="Fatal"   actionListener="#{mb.aclFatal}"/>;
+	
+	<!-- ================================================================== --> 
+	
+	<hr/><a href="https://jigsaw.w3.org/css-validator/">
+		<img class="csslogo" src="https://jigsaw.w3.org/css-validator/images/vcss"
+			alt="Valid CSS!" height="31" width="88"/></a>
+			
+	<p><SMALL>Release 2020-11-12</SMALL></p>
+</h:form></h:body>
+</html>

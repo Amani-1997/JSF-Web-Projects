@@ -1,0 +1,44 @@
+/*
+ * Student
+ * JSF Tabellen-Demo
+ */
+
+package net.lehre_online.tbldemo;
+
+/**
+ * Die Objekte der Klasse Student repräsentieren jeweils ein Tupel der Tabelle
+ * Student
+ * 
+ * @author Wolfgang Lang
+ * @version 1.1.8, 2014-03-23
+ * @see     "Foliensatz zur Vorlesung"
+ */
+public class Student {
+ 
+  private int matNr = 0;
+  private String name, vorname, studiengang;
+    
+  public Student( int matNr, String name, String vorname, String studiengang ) {
+      this.matNr = matNr;
+      this.name  = name;
+      this.vorname = vorname;
+      this.studiengang = studiengang;
+    }
+    
+  public void setMatNr( int n ){ matNr = n; }
+  public int getMatNr(){ return matNr; }
+    
+  public void setName( String s ){ name = s; }
+  public String getName(){ return name; }
+    
+  public void setVorname( String s ){ vorname = s; }
+  public String getVorname(){ return vorname; }
+  
+  public void setStudiengang( String s ){ studiengang = s; }
+  public String getStudiengang(){ return studiengang; }
+  
+  @Override
+  public String toString() {
+    return matNr + " " + name + " " + vorname + " " + studiengang;
+  }
+}

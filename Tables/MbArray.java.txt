@@ -1,0 +1,82 @@
+/*
+ * MbArray.java
+ * JSF Tabellen Demo
+ */
+
+package net.lehre_online.tbldemo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.ArrayDataModel;
+import javax.inject.Named;
+
+/**
+ * Backing bean der JSF-Seite tbl_array.xhtml
+ *
+ * @author Wolfgang Lang
+ * @version 1.2.1, 2017-08-20
+ * @see     "Foliensatz zur Vorlesung"
+ */
+@Named( "bar" )
+@SessionScoped
+public class MbArray implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+  
+  ArrayDataModel<Student[]> adm = null;
+  
+  int count = 0;
+  
+  private Student[] studenten = new Student[] {
+    new Student( 123456, "Pan"   , "Peter"   , "Wirtschaftsinformatik" ),  
+    new Student( 347832, "Goldi" , "Lock"    , "Economics"             ),
+    new Student( 333333, "Noch'n", "Student" , "Das Leben"             ),  
+    new Student( 444444, "Name4" , "Vorname4", "Soziologie"            ),
+    new Student( 555555, "Name5" , "Vorname5", "Wirtschaftsinformatik" ),
+    new Student( 666666, "Name6" , "Vorname6", "Wirtschaftsinformatik" )
+  };
+	
+  public MbArray() {
+    System.out.println( "MbArray.<init>..."  );
+    System.out.println( (new Date()).toString() );
+  }
+  
+  /*--------------------------------------------------------------------------*/
+  
+  @PostConstruct
+  public void init() { System.out.println( "@PostConstruct.MbArray" ); }
+  
+  public void preRenderAction()  { System.out.println( "MbArray.preRenderAction"  ); }  
+  public void postRenderAction() { System.out.println( "MbArray.postRenderAction" ); } 
+  
+  /*--------------------------------------------------------------------------*/
+  
+  public ArrayDataModel<Student[]> getStudenten(){ 
+    
+    //System.out.println( (++count) + " getStudenten()..." );
+    if( adm == null ) adm = new ArrayDataModel( studenten );
+    
+    return adm; 
+  }
+  
+  /*--------------------------------------------------------------------------*/
+  
+  /**
+   * Dieser Listener wird über den command button im actions facet der Tabelle 
+   * getriggert
+   * @param ae
+   */
+  public void printData( ActionEvent ae ) {
+    
+    System.out.println( "\nStudenten in Tabelle: ");
+    
+    for( int i = 0; i < studenten.length; i++ ) 
+      System.out.println( studenten[ i ].toString() );
+    
+    System.out.println();
+  }
+}

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+browse.xhtml - Die Seite demonstriert den Zugriff auf eine Datenbanktabelle. Es
+wird die Tabelle "Student" geöffnet und durch das
+ResultSet gescrollt
+============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="myCss.css" />
+	<title>Browse Student</title>
+	<meta charset="utf-8" />
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<a href="https://myfaces.apache.org/"> <h:graphicImage
+				library="img" name="jsf-logo.png" styleClass="csslogo" alt="JSF" />
+			<!-- Alternativ zu h:graphicImage sollte auch gehen:
+<img class="csslogo" src="resources/img/jsf-logo.png" alt="JSF"/> -->
+		</a>
+
+		<h:panelGrid columns="2">
+			<h:graphicImage library="img" name="java.png" alt="Logo" />
+			<h:outputText value="Browse Student JSF 2.3" styleClass="branding" />
+		</h:panelGrid>
+		<!-- ================================================================== -->
+
+		<h:messages globalOnly="false" showDetail="true" showSummary="true"
+			infoClass="msgInfo" warnClass="msgWarning" errorClass="msgError"
+			fatalClass="msgFatal" />
+
+		<f:event type="preRenderView" listener="#{mbBrowse.preRenderAction }" />
+		<f:event type="postRenderView" listener="#{mbBrowse.postRenderAction}" />
+
+		<h3>Datensätze der Tabelle bibliothek.student</h3>
+
+		<p>
+			Diese Anwendung demonstriert den Zugriff auf einen MySQL bzw. MariaDB
+			Server unter Verwendung der Hilfsklasse
+			<CODE>Util.java</CODE>
+		</p>
+
+		<p />
+		<p />
+		<h:panelGroup>
+Matrikel-Nr &#160;
+<h:inputText label="Matrikel-Nr" maxlength="10"
+				value="#{mbBrowse.matNr}" /> &#160;&#160;
+Name &#160;
+<h:inputText label="Name" value="#{mbBrowse.name}" maxlength="45" /> &#160;&#160;
+Vorname &#160;
+<h:inputText label="Vorname" value="#{mbBrowse.vorname}" maxlength="45" /> &#160;&#160;
+Geburtstag
+<h:inputText id="id_geburtstag" label="Geburtstag" maxlength="10"
+				value="#{mbBrowse.geburtstag}"> &#160;&#160;
+<f:convertDateTime locale="de_DE" pattern="dd.MM.yyyy" type="date"
+					dateStyle="short" timeZone="MET" />
+			</h:inputText>
+Page 1
+browse.xhtml
+</h:panelGroup>
+
+		<p />
+Masterstudent
+<h:selectBooleanCheckbox label="Masterstudent"
+			value="#{mbBrowse.masterstudent}" />
+		<p />
+		<p />
+		<h:panelGroup>
+			<h:commandButton value="&lt;&lt;"
+				disabled="#{mbBrowse.prevButtonDisabled}" title="Zurück blättern"
+				style="font-size: 130%;" actionListener="#{mbBrowse.prev}" /> &#160;&#160;
+
+<h:commandButton value="&gt;&gt;"
+				disabled="#{mbBrowse.nextButtonDisabled}" title="Vorwärts blättern"
+				style="font-size: 130%;" actionListener="#{mbBrowse.next}" /> &#160;&#160;
+
+<h:commandButton value="Insert" disabled="#{ ! mbBrowse.connected}"
+				title="Datensatz einfügen" style="font-size: 130%;"
+				actionListener="#{mbBrowse.insert}" /> &#160;&#160;
+
+<h:commandButton value="Update" disabled="#{ ! mbBrowse.connected}"
+				title="Datensatz aktualisieren" style="font-size: 130%;"
+				actionListener="#{mbBrowse.update}" /> &#160;&#160;
+
+<h:commandButton value="Delete" disabled="#{ ! mbBrowse.connected}"
+				title="Datensatz löschen" style="font-size: 130%;"
+				actionListener="#{mbBrowse.delete}" /> &#160;&#160;
+
+<h:commandButton value="Connect" disabled="#{mbBrowse.connected}"
+				actionListener="#{mbBrowse.connect}" style="font-size: 130%;" /> &#160;&#160;
+
+ <h:commandButton value="Disconnect" disabled="#{ ! mbBrowse.connected}"
+				actionListener="#{mbBrowse.disconnect}" style="font-size: 130%;" />
+		</h:panelGroup>
+
+		<!-- ================================================================== -->
+		<hr />
+		<h3>Quellcode-Downloads</h3>
+		<ul>
+			<li><a href="resources/etc/faces-config.xml.txt">faces-config.xml</a>
+			</li>
+			<li><a href="resources/etc/MbDb.java.txt">MbDb.java</a></li>
+			<li><a href="resources/etc/Util.java.txt">Util.java</a></li>
+		</ul>
+
+		<hr />
+		<a href="https://jigsaw.w3.org/css-validator/"> <img
+			class="csslogo" src="https://jigsaw.w3.org/css-validator/images/vcss"
+			alt="Valid CSS!" height="31" width="88" /></a>
+		<p>
+			<small>Rel. 2017-07-12</small>
+		</p>
+	</h:form>
+</h:body>
+</html>

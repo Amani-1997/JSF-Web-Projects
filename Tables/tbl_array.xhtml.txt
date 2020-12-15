@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ tbl_array.xhtml - Eine einfache Anwendung zur Demonstration des Umgangs mit 
+                   Tabellen. Die Daten kommen aus einem Array
+============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<body>
+<ui:composition template="/masterLayout.xhtml">
+
+  <ui:define name="title">Tabellendemo</ui:define>
+
+  <ui:define name="content">
+  <!--  ===================================================================  -->
+  
+  <h3>Eine einfache Tabelle mit Daten aus einem ArrayDataModel</h3>
+  
+  <h:dataTable value="#{bar.studenten}" var="student" >
+    
+    <h:column>
+      <h:outputText value="#{student.matNr} &#160;"/>
+    </h:column>
+    <h:column>
+      <h:outputText value="#{student.name} &#160;"/>
+    </h:column>
+    <h:column>
+      <h:outputText value="#{student.vorname} &#160;"/>
+    </h:column>
+    <h:column>
+      <h:outputText value="#{student.studiengang}"/>
+    </h:column>    
+    
+  </h:dataTable>
+  
+  <!--  ===================================================================  -->
+  <hr/><h3>Quellcode-Downloads</h3>
+  <ul>
+     <li><a href="resources/etc/tbl_array.xhtml.txt">Diese JSF-Seite</a></li>
+     <li><a href="resources/etc/Student.java.txt">Student.java</a></li>
+     <li><a href="resources/etc/BeanArray.java.txt">BeanArray.java</a></li>
+  </ul>     
+      
+  </ui:define>
+</ui:composition>
+
+</body>
+</html>
